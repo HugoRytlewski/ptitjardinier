@@ -1,0 +1,23 @@
+{% extends 'base.html.twig' %} {% block title %}Hello DevisController!{%
+endblock %} {% block body %}
+<style></style>
+
+<div class="h-[101vh] w-[101vw] flex flex-col justify-center items-center">
+  <a class="flex gap-2"
+    ><p>Vous êtes un(e)</p>
+    {{ maVariable }}
+  </a>
+  <a  class="flex gap-2"
+    ><p>Votre haie:</p>
+    {{ haie }}
+  </a>
+  <a  class="flex gap-2"
+    ><p>Rappel Hauteur</p>
+    {{ hauteur }}
+  </a>
+  <a class="flex gap-2"
+    ><p>Rappel Longueur</p>
+    {{ longueur }}
+  </a>
+</div>
+{% endblock %}
