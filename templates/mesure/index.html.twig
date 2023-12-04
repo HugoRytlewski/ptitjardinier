@@ -5,25 +5,39 @@ endblock %} {% block body %}
   <div
     class="h-[101vh] w-[101vw] flex flex-col gap-2 justify-center items-center"
   >
-    
-
-    <form  method="post" action="{{ path('app_devis') }}" class="flex flex-col items-center justify-center gap-2">
-        <div class="flex gap-2">
-            <h1 class="">Quel type de haie souhaitez-vous ?</h1>
-            <select name="haie"> 
-              <option value="abelia">Abélia</option>
-              <option value="laurier">Laurier</option>
-              <option value="thuya">Thuya</option>
-              <option value="troene">Troène</option>
-            </select>
-          </div>
+    <form
+      method="post"
+      action="{{ path('app_devis') }}"
+      class="flex flex-col items-center justify-center gap-2"
+    >
+      <div class="flex gap-2">
+        <h1 class="">Quel type de haie souhaitez-vous ?</h1>
+        <select name="haie">
+          <option value="abelia">Abélia</option>
+          <option value="laurier">Laurier</option>
+          <option value="thuya">Thuya</option>
+          <option value="troene">Troène</option>
+        </select>
+      </div>
       <div>
         <label for="">Longeur</label>
-        <input type="text" name="longueur" id="" class="border-black border" />
+        <input
+          type="text"
+          name="longueur"
+          id=""
+          class="border-black border"
+          required
+        />
       </div>
       <div>
         <label for="">Hauteur</label>
-        <input type="text" name="hauteur" id="" class="border-black border" />
+        <input
+          type="text"
+          name="hauteur"
+          id=""
+          class="border-black border"
+          required
+        />
       </div>
       <input
         type="submit"
