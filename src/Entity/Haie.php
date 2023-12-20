@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\HaieRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -17,11 +19,19 @@ class Haie
     private ?string $nom = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 10, scale: '0')]
-    private ?string $prix = null;
+    private ?float $prix = null;
 
     #[ORM\ManyToOne(inversedBy: 'haies')]
     #[ORM\JoinColumn(nullable: false)]
     private ?Categorie $categorie = null;
+
+    #[ORM\OneToMany(mappedBy: 'haie', targetEntity: Tailler::class)]
+    private Collection $taillers;
+
+    public function __construct()
+    {
+        $this->taillers = new ArrayCollection();
+    }
 
     public function getCode(): ?string
     {
@@ -67,6 +77,36 @@ class Haie
     public function setCategorie(?Categorie $categorie): static
     {
         $this->categorie = $categorie;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Tailler>
+     */
+    public function getTaillers(): Collection
+    {
+        return $this->taillers;
+    }
+
+    public function addTailler(Tailler $tailler): static
+    {
+        if (!$this->taillers->contains($tailler)) {
+            $this->taillers->add($tailler);
+            $tailler->setHaie($this);
+        }
+
+        return $this;
+    }
+
+    public function removeTailler(Tailler $tailler): static
+    {
+        if ($this->taillers->removeElement($tailler)) {
+            // set the owning side to null (unless already changed)
+            if ($tailler->getHaie() === $this) {
+                $tailler->setHaie(null);
+            }
+        }
 
         return $this;
     }

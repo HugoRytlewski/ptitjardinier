@@ -41,12 +41,14 @@ class ModifierHaieController extends AbstractController
     }
 
     #[Route('/modifier/{code}', name: 'app_haie_modifierUneHaie')]
-    public function modif(string $code ,EntityManagerInterface $em ,CategorieRepository $cr ,  Request $request): Response
+    public function modif(string $code ,EntityManagerInterface $em ,CategorieRepository $cr): Response
     {
 
      
 
         $haie = $em->getRepository(Haie::class)->find($code);
+
+
         $categories = $cr->findAll();
 
         return $this->render('LaHaiemodifier_haie/index.html.twig', ['haie' => $haie , 'categories' => $categories]);
