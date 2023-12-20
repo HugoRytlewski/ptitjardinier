@@ -1,0 +1,42 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ModifierHaieController!{% endblock %}
+
+{% block body %}
+
+
+<div class="h-screen w-screen flex items-center justify-center bg-gray-100 p-4">
+    <table class="min-w-full border-collapse block md:table">
+        <thead class="block md:table-header-group">
+            <tr class="border border-gray-300 md:border-none block md:table-row">
+                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 text-left block md:table-cell">Code</th>
+                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 text-left block md:table-cell">Nom</th>
+                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 text-left block md:table-cell">Prix</th>
+                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 text-left block md:table-cell">Actions</th>
+            </tr>
+        </thead>
+
+        <tbody class="block md:table-row-group">
+            {% for haie in mesHaies %}
+
+                <tr class="bg-white border border-gray-300 md:border-none block md:table-row">
+                    
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ haie.getCode() }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ haie.getNom() }}</td>
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ haie.getPrix() }}</td>
+
+                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">
+                    <a class="text-blue-500  hover:text-blue-600 duration-200" href="{{ path('app_haie_modifierUneHaie', { 'code': haie.getCode() }) }}">
+                        Consultation/Modification
+                    </a>
+                </tr>
+            {% else %}
+                <tr class="bg-white">
+                    <td colspan="4" class="p-2 text-gray-700 text-center">Aucune haie trouvée.</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</div>
+
+{% endblock %}

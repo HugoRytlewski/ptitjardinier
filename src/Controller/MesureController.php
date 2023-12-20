@@ -20,7 +20,7 @@ class MesureController extends AbstractController
         $session->set('nomVariable', $choix);
 
         
-        return $this->render('mesure/index.html.twig', [
+        return $this->render('mesure/index.html.twig', [6+
             'controller_name' => 'MesureController',
         ]);
     }

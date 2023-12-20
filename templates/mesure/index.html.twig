@@ -6,21 +6,22 @@ endblock %} {% block body %}
     class="h-[101vh] w-[101vw] flex flex-col gap-2 justify-center items-center"
   >
     <form
-      method="post"
-      action="{{ path('app_devis') }}"
+      method="GET"
       class="flex flex-col items-center justify-center gap-2"
+      action="{{ path('app_devis') }}"
     >
       <div class="flex gap-2">
         <h1 class="">Quel type de haie souhaitez-vous ?</h1>
         <select name="haie">
-          <option value="abelia">Abélia</option>
-          <option value="laurier">Laurier</option>
-          <option value="thuya">Thuya</option>
-          <option value="troene">Troène</option>
+          {% for haie in mesHaies %}
+
+          <option value="{{ haie.getNom() ~ '|' ~ haie.getPrix() }}">{{ haie.getNom() }}</option>
+          {% endfor %}
         </select>
+        
       </div>
       <div>
-        <label for="">Longeur</label>
+        <label for="">Longeur</label> 
         <input
           type="text"
           name="longueur"
@@ -46,4 +47,5 @@ endblock %} {% block body %}
     </form>
   </div>
 </div>
+
 {% endblock %}
