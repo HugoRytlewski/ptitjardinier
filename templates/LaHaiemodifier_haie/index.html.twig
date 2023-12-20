@@ -24,6 +24,15 @@
                 <label for="code">Code :</label>
                 <input type="text" name="code" id="code" value="{{haie.getCode()}}">
             </div>
+            <label for="categorie">Categorie :</label>
+                <select name="categorie" id="categorie">
+                    {% for categorie in categories %}
+                        <option value="{{categorie.getId()}}">{{categorie.getLibelle()}}</option>
+                    {% endfor %}
+                </select>
+            <div>                   
+
+                
             <input type="submit" value="Modifier" class="bg-green-700 text-white h-10 cursor-pointer hover:bg-green-600 duration-200">
         </div>
     
