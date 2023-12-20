@@ -4,42 +4,39 @@
 
 {% block body %}
 
-
 <div class="h-screen w-screen flex items-center justify-center bg-gray-100 p-4">
-    <table class="min-w-full border-collapse block md:table">
-        <thead class="block md:table-header-group">
-            <tr class="border border-gray-300 md:border-none block md:table-row">
-                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 text-left block md:table-cell">Code</th>
-                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 text-left block md:table-cell">Nom</th>
-                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 text-left block md:table-cell">Prix</th>
-                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 text-left block md:table-cell">Categorie</th>
-                <th class="bg-gray-200 p-2 text-gray-600 font-bold md:border md:border-gray-300 text-left block md:table-cell">Actions</th>
-            </tr>
-        </thead>
-
-        <tbody class="block md:table-row-group">
-            {% for haie in mesHaies %}
-
-                <tr class="bg-white border border-gray-300 md:border-none block md:table-row">
-                    
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ haie.getCode() }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ haie.getNom() }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ haie.getPrix() }}</td>
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">{{ haie.getCategorie().getLibelle() }}</td>
-
-                    <td class="p-2 md:border md:border-gray-300 text-left block md:table-cell">
-                    <a class="text-blue-500  hover:text-blue-600 duration-200" href="{{ path('app_haie_modifierUneHaie', { 'code': haie.getCode() }) }}">
-                        Consultation/Modification
-                    </a>
-
+    <div class="overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="min-w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+                <tr>
+                    <th scope="col" class="px-6 py-3">Code</th>
+                    <th scope="col" class="px-6 py-3">Nom</th>
+                    <th scope="col" class="px-6 py-3">Prix</th>
+                    <th scope="col" class="px-6 py-3">Categorie</th>
+                    <th scope="col" class="px-6 py-3">Actions</th>
                 </tr>
-            {% else %}
-                <tr class="bg-white">
-                    <td colspan="4" class="p-2 text-gray-700 text-center">Aucune haie trouvée.</td>
-                </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+            </thead>
+            <tbody>
+                {% for haie in mesHaies %}
+                    <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700">
+                        <td class="px-6 py-4">{{ haie.getCode() }}</td>
+                        <td class="px-6 py-4">{{ haie.getNom() }}</td>
+                        <td class="px-6 py-4">{{ haie.getPrix() }}</td>
+                        <td class="px-6 py-4">{{ haie.getCategorie().getLibelle() }}</td>
+                        <td class="px-6 py-4">
+                            <a class="font-medium text-green-400 hover:underline" href="{{ path('app_haie_modifierUneHaie', { 'code': haie.getCode() }) }}">
+                                Consultation/Modification
+                            </a>
+                        </td>
+                    </tr>
+                {% else %}
+                    <tr class="bg-white">
+                        <td colspan="5" class="px-6 py-4 text-center text-gray-500">Aucune haie trouvée.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
 </div>
 
 {% endblock %}

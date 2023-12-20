@@ -3,41 +3,32 @@
 {% block title %}Hello ModifierHaieController!{% endblock %}
 
 {% block body %}
-
-
-<div class="h-screen w-screen flex items-center justify-center bg-gray-100 p-4">
-    
-
-
-    <form action="{{ path('app_haie_modifLaHaie') }}" method="POST">
-        <input type="hidden" name="codeModif" value="{{haie.getCode()}}">
-        <div class="flex flex-col text-center gap-4 border-4 p-6 rounded border-green-700 w-96 p-2">
-            <div>
-                <label for="nom">Nom :</label>
-                <input type="text" name="nom" id="nom" value="{{haie.getNom()}}">
-            </div>
-          <div>
-            <label for="prix">Prix :</label>
-                <input type="text" name="prix" id="prix" value="{{haie.getPrix()}}">
-          </div>
-            <div>
-                <label for="code">Code :</label>
-                <input type="text" name="code" id="code" value="{{haie.getCode()}}">
-            </div>
-            <label for="categorie">Categorie :</label>
-                <select name="categorie" id="categorie">
-                    {% for categorie in categories %}
-                        <option value="{{categorie.getId()}}">{{categorie.getLibelle()}}</option>
-                    {% endfor %}
-                </select>
-            <div>                   
-
-                
-            <input type="submit" value="Modifier" class="bg-green-700 text-white h-10 cursor-pointer hover:bg-green-600 duration-200">
+<div class="h-screen flex items-center justify-center bg-gray-100 p-4">
+    <form action="{{ path('app_haie_modifLaHaie') }}" method="POST" class="w-96 border-4 border-green-700 p-4 rounded">
+        <input type="hidden" name="codeModif" value="{{ haie.getCode() }}">
+        <div class="mb-4">
+            <label for="nom" class="block">Nom :</label>
+            <input type="text" name="nom" id="nom" value="{{ haie.getNom() }}" class="w-full px-2 py-1 border rounded">
         </div>
-    
+        <div class="mb-4">
+            <label for="prix" class="block">Prix :</label>
+            <input type="text" name="prix" id="prix" value="{{ haie.getPrix() }}" class="w-full px-2 py-1 border rounded">
+        </div>
+        <div class="mb-4">
+            <label for="code" class="block">Code :</label>
+            <input type="text" name="code" id="code" value="{{ haie.getCode() }}" class="w-full px-2 py-1 border rounded">
+        </div>
+        <div class="mb-4">
+            <label for="categorie" class="block">Categorie :</label>
+            <select name="categorie" id="categorie" class="w-full px-2 py-1 border rounded">
+                {% for categorie in categories %}
+                    <option value="{{ categorie.getId() }}">{{ categorie.getLibelle() }}</option>
+                {% endfor %}
+            </select>
+        </div>
+        <div class="mb-4">
+            <input type="submit" value="Modifier" class="w-full bg-green-700 text-white py-2 px-4 rounded cursor-pointer hover:bg-green-600 duration-200">
+        </div>
     </form>
-    
 </div>
-
 {% endblock %}

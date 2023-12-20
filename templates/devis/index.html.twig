@@ -1,27 +1,40 @@
-{% extends 'base.html.twig' %} {% block title %}Hello DevisController!{%
-endblock %} {% block body %}
-<style></style>
+{% extends 'base.html.twig' %}
 
-<div class="h-[101vh] w-[101vw] flex flex-col justify-center items-center">
-  <a class="flex gap-2"
-    ><p>Vous êtes un(e)</p>
-    {{ maVariable }}
-  </a>
-  <a class="flex gap-2"
-    ><p>Votre haie:</p>
-    {{ haie }}
-  </a>
-  <a class="flex gap-2"
-    ><p>Rappel Hauteur</p>
-    {{ hauteur }}
-  </a>
-  <a class="flex gap-2"
-    ><p>Rappel Longueur</p>
-    {{ longueur }}
-  </a>
-  <a class="flex gap-2"
-    ><p>Prix</p>
-    {{ prix }}
+{% block title %}Hello DevisController!{% endblock %}
+
+{% block body %}
+
+<div class="flex flex-col items-center justify-center h-screen bg-gray-100">
+    <div class="p-4 max-w-md bg-white rounded-lg shadow">
+        <h2 class="text-2xl font-semibold text-center mb-6">Détails du Devis</h2>
+        
+        <div class="flex flex-col gap-3">
+            <div class="flex items-center gap-2">
+                <p class="font-medium">Vous êtes un(e):</p>
+                <span class="text-gray-700">{{ maVariable }}</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <p class="font-medium">Votre haie:</p>
+                <span class="text-gray-700">{{ haie }}</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <p class="font-medium">Rappel Hauteur:</p>
+                <span class="text-gray-700">{{ hauteur }}</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <p class="font-medium">Rappel Longueur:</p>
+                <span class="text-gray-700">{{ longueur }}</span>
+            </div>
+
+            <div class="flex items-center gap-2">
+                <p class="font-medium">Prix:</p>
+                <span class="text-gray-700">{{ prix }} euros</span>
+            </div>
+        </div>
+    </div>
 </div>
 
 {% endblock %}

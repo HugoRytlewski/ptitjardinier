@@ -1,19 +1,40 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello AccueilController!{% endblock %}
+{% block title %}Le P'tit Jardinier{% endblock %}
 
 {% block body %}
 
+<div class="flex items-center justify-center h-screen bg-gray-300">
+    <div class="text-center animate-fade-in-up bg-white shadow p-10 rounded-2xl h-96 flex items-center justify-center flex-col">
+        <h1 class="text-4xl font-bold text-green-600 underline">Le P'tit j@ardinier</h1>
+        <h2 class="text-3xl text-gray-700 mt-2">Des professionnels à votre service</h2>
+        <a href="{{ path('app_choix') }}" class="mt-4 inline-block bg-green-600 text-white py-2 px-4 rounded hover:bg-green-700 transition duration-300 ease-in-out transform hover:-translate-y-1">Obtenir un devis en ligne pour une taille de haie</a>
+       
+    </div>
+</div>
 
-<div class="example-wrapper ">
- <div class="h-[101vh] w-[101vw] flex justify-center items-center  ">
- <div class="flex flex-col text-center gap-4"> 
- <h1 class="underline text-4xl ">Le P'tit j@ardinier </h1>
-    <h2 class="text-3xl ">Des professionels à votre service</h2>
-<a  class="text-blue-500 hover:underline" href="{{ path('app_choix') }}">Obtenir un devis en ligne pour une taille de haie </a>
-<img src="https://img.freepik.com/vecteurs-premium/jardinier-dessine-main-aide-illustration-dessin-anime-tondeuse-gazon_52683-115951.jpg" alt="">
- </div>
+<style>
     
-</div>
-</div>
+    /* Animation personnalisée */
+    @keyframes fade-in-up {
+        0% {
+            opacity: 0;
+            transform: translateY(20px);
+        }
+        100% {
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+
+    .animate-fade-in-up {
+        animation: fade-in-up 1s ease-out;
+    }
+
+    .animate-fade-in {
+        animation: fade-in-up 1.5s ease-out 0.5s;
+        animation-fill-mode: forwards;
+    }
+</style>
+
 {% endblock %}

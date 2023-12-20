@@ -1,51 +1,37 @@
-{% extends 'base.html.twig' %} {% block title %}Hello AccueilController!{%
-endblock %} {% block body %}
+{% extends 'base.html.twig' %}
 
-<div class="example-wrapper">
-  <div
-    class="h-[101vh] w-[101vw] flex flex-col gap-2 justify-center items-center"
-  >
-    <form
-      method="GET"
-      class="flex flex-col items-center justify-center gap-2"
-      action="{{ path('app_devis') }}"
-    >
-      <div class="flex gap-2">
-        <h1 class="">Quel type de haie souhaitez-vous ?</h1>
-        <select name="haie">
-          {% for haie in mesHaies %}
+{% block title %}Hello AccueilController!{% endblock %}
 
-          <option value="{{ haie.getNom() ~ '|' ~ haie.getPrix() }}">{{ haie.getNom() }}</option>
-          {% endfor %}
-        </select>
-        
-      </div>
-      <div>
-        <label for="">Longeur</label> 
-        <input
-          type="text"
-          name="longueur"
-          id=""
-          class="border-black border"
-          required
-        />
-      </div>
-      <div>
-        <label for="">Hauteur</label>
-        <input
-          type="text"
-          name="hauteur"
-          id=""
-          class="border-black border"
-          required
-        />
-      </div>
-      <input
-        type="submit"
-        class="border rounded bg-neutral-700 text-white h-10 p-2"
-      />
-    </form>
-  </div>
+{% block body %}
+
+<div class="flex items-center justify-center h-screen bg-gray-100">
+    <div class="p-6 max-w-lg bg-white rounded-lg shadow-md">
+        <form method="GET" action="{{ path('app_devis') }}" class="space-y-4">
+            <div class="text-center">
+                <h1 class="text-2xl font-semibold">Quel type de haie souhaitez-vous ?</h1>
+            </div>
+
+            <div>
+                <select name="haie" class="block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500">
+                    {% for haie in mesHaies %}
+                    <option value="{{ haie.getNom() ~ '|' ~ haie.getPrix() }}">{{ haie.getNom() }}</option>
+                    {% endfor %}
+                </select>
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label for="longueur" class="text-sm font-medium text-gray-700">Longueur</label>
+                <input type="text" name="longueur" id="longueur" class="p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" required />
+            </div>
+
+            <div class="flex flex-col gap-1">
+                <label for="hauteur" class="text-sm font-medium text-gray-700">Hauteur</label>
+                <input type="text" name="hauteur" id="hauteur" class="p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" required />
+            </div>
+
+            <input type="submit" value="Calculer le devis" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+        </form>
+    </div>
 </div>
 
 {% endblock %}
