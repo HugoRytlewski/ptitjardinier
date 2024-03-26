@@ -5,35 +5,52 @@
 {% block body %}
 
 <div class="flex flex-col items-center justify-center h-screen bg-gray-100">
-    <div class="p-4 max-w-md bg-white rounded-lg shadow">
+    <div class="p-4 w-96 bg-white rounded-lg shadow">
         <h2 class="text-2xl font-semibold text-center mb-6">Détails du Devis</h2>
         
         <div class="flex flex-col gap-3">
             <div class="flex items-center gap-2">
                 <p class="font-medium">Vous êtes un(e):</p>
-                <span class="text-gray-700">{{ maVariable }}</span>
+                <span class="text-gray-700">{{ devis.maVariable }}</span>
             </div>
 
             <div class="flex items-center gap-2">
                 <p class="font-medium">Votre haie:</p>
-                <span class="text-gray-700">{{ haie }}</span>
+                <span class="text-gray-700">{{ devis.haie }}</span>
             </div>
 
             <div class="flex items-center gap-2">
                 <p class="font-medium">Rappel Hauteur:</p>
-                <span class="text-gray-700">{{ hauteur }}</span>
+                <span class="text-gray-700">{{ devis.hauteur }}</span>
             </div>
 
             <div class="flex items-center gap-2">
                 <p class="font-medium">Rappel Longueur:</p>
-                <span class="text-gray-700">{{ longueur }}</span>
+                <span class="text-gray-700">{{ devis.longueur }}</span>
             </div>
 
             <div class="flex items-center gap-2">
                 <p class="font-medium">Prix:</p>
-                <span class="text-gray-700">{{ prix }} euros</span>
+                <span class="text-gray-700">{{ devis.prix }} euros</span>
             </div>
         </div>
+        {% if app.user %}
+
+        <form action="{{ path('app_devis_create') }}" method="post">
+            <input type="hidden" name="haie" value="{{devis.haie}}">
+            <input type="hidden" name="maVariable" value="{{devis.maVariable}}">
+            <input type="hidden" name="hauteur" value="{{devis.hauteur}}">
+            <input type="hidden" name="longueur" value="{{devis.longueur}}">
+            <input type="hidden" name="prix" value="{{devis.prix}}">
+
+            <button   class="h-10 w-full cursor-pointer hover:bg-green-600 duration-300 bg-green-500 text-white flex items-center justify-center rounded-xl ">Demander le devis</button>
+
+        </form>
+        {% else %}
+        <a href="{{ path('app_login') }}" class="h-10 w-full cursor-pointer hover:bg-green-600 duration-300 bg-green-500 text-white flex items-center justify-center rounded-xl ">Connectez-vous pour demander un devis</a>
+        {% endif %}
+        
+
     </div>
 </div>
 

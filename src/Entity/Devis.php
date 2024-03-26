@@ -20,8 +20,8 @@ class Devis
     private ?\DateTimeInterface $date = null;
 
     #[ORM\ManyToOne(inversedBy: 'devis')]
-    #[ORM\JoinColumn(name: "client_id", referencedColumnName: "no")]
-    private ?Client $client = null;
+    #[ORM\JoinColumn(name: "user_id", referencedColumnName: "id")]
+    private ?User $user = null;
 
     #[ORM\OneToMany(mappedBy: 'devis', targetEntity: Tailler::class)]
     private Collection $taillers;
@@ -48,14 +48,14 @@ class Devis
         return $this;
     }
 
-    public function getClient(): ?Client
+    public function getUser(): ?User
     {
-        return $this->client;
+        return $this->user;
     }
 
-    public function setClient(?Client $client): self
+    public function setUser(?User $user): self
     {
-        $this->client = $client;
+        $this->user = $user;
 
         return $this;
     }

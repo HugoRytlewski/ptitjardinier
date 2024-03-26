@@ -7,8 +7,8 @@
 <div class="flex justify-center items-center h-screen bg-gray-100">
     <div class="w-full max-w-md p-6 rounded-lg bg-white shadow-md">
         <h1 class="text-3xl font-semibold text-center text-gray-800 mb-6">Vous êtes ?</h1>
-        
-        <form method="post" action="{{ path('app_haiee_test') }}" class="space-y-4">
+
+        <form method="post" action="{{ path('app_haiee_test', {'user': 'not_connected'}) }}" class="space-y-4">
             <div class="flex items-center">
                 <input id="Particulier" type="radio" name="choix" value="Particulier" class="w-4 h-4 text-green-600 bg-gray-100 border-gray-300 focus:ring-green-500 dark:focus:ring-green-600" required>
                 <label for="Particulier" class="ml-2 text-sm font-medium text-gray-900">Particulier</label>

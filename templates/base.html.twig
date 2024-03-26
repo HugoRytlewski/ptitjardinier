@@ -22,16 +22,38 @@
                     
                 </div>
                 <div class="relative inline-block text-left">
-                    <a onclick="openNav()" href="#" class="text-white px-3 py-2 rounded-md hover:bg-green-700">Devis</a>
+                    <a onclick="openNav()" href="#" class="text-white px-3 py-2 rounded-md hover:bg-green-700">Haie</a>
                     <div id='sousmenu' class="hidden absolute bg-green-800 py-2 rounded-md text-white  mt-10 z-20">
                         <a href="{{path('app_ajouter_haie')}}" class="block px-4 py-2 hover:bg-green-700">Création</a>
                         <a href="{{path('app_modifier_list')}}" class="block px-4 py-2 hover:bg-green-700">Consultation/Modification</a>
                     </div>
                 </div>
+                <div class="relative inline-block text-left">
 
-                <a href="#" class="text-white px-3 py-2 rounded-md hover:bg-green-700">Gestion des types de haie</a>
+                <a onclick="openNav2() "href="#" class="text-white px-3 py-2 rounded-md hover:bg-green-700">Client</a>
+                <div id='sousmenu2' class="hidden absolute bg-green-800 py-2 rounded-md text-white  mt-10 z-20">
+                    <a href="{{path('app_ajouter_haie')}}" class="block px-4 py-2 hover:bg-green-700">Ajout client</a>
+                    <a href="{{path('app_modifier_list')}}" class="block px-4 py-2 hover:bg-green-700">Consultation/Modification</a>
+                </div>
                 <a href="#" class="text-white px-3 py-2 rounded-md hover:bg-green-700">Contact</a>
             </div>
+
+            {% if is_granted('ROLE_ADMIN') %}
+            <a href="{{path('app_devis_list')}}" class="text-white px-3 py-2 rounded-md hover:bg-green-700">Devis</a>
+
+               
+            {% endif %}  
+
+            </div>
+            {% if app.user %}
+                <a href="{{path('app_logout')}}" class="block px-4 py-2 hover:bg-green-700 rounded-xl text-white">Se déconnecter</a>
+            {% else %}
+            <div class="flex gap-6">
+                <a href="{{path('app_login')}}" class="block px-4 py-2 hover:bg-green-700 rounded-xl text-white">Se connecter</a>
+                <a href="{{path('app_register')}}" class="block px-4 py-2 hover:bg-green-700 rounded-xl text-white">S'inscrire</a>
+            </div>
+
+                {% endif %}
         </div>
     </nav>
 
@@ -48,6 +70,15 @@
             document.getElementById("sousmenu").style.display = "none";
             } else {
             document.getElementById("sousmenu").style.display = "block";
+
+        }
+    }
+    function openNav2() {
+        IsOpen = !IsOpen;
+        if (IsOpen === false) {
+            document.getElementById("sousmenu2").style.display = "none";
+            } else {
+            document.getElementById("sousmenu2").style.display = "block";
 
         }
     }

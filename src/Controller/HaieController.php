@@ -64,13 +64,17 @@ class HaieController extends AbstractController
     
 
 
-        #[Route('/haiee/test', name: 'app_haiee_test')]
-        public function liste(HaieRepository $haieRepository): Response
+        #[Route('/haiee/test/{user}', name: 'app_haiee_test')]
+        public function liste($user,HaieRepository $haieRepository): Response
         {
-
+           
            $request = Request::createFromGlobals();
            $choix=$request->get('choix');
-    
+
+           if ($user !== 'not_connected') {
+                $choix = $user;
+           }
+
            $session = new Session();
            $session->set('nomVariable', $choix);
 

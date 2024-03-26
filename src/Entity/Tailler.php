@@ -13,8 +13,6 @@ class Tailler
     #[ORM\Column]
     private ?int $no = null;
 
-    #[ORM\Column(type: 'string')]
-    private ?string $code = null;
 
     #[ORM\Column]
     private ?float $hauteur = null;
@@ -37,13 +35,6 @@ class Tailler
         return $this->no;
     }
 
-
-
-     public function setCode(string $code): self
-    {
-        $this->code = $code;
-        return $this;
-    }
 
     public function setHauteur(float $hauteur): self
     {
