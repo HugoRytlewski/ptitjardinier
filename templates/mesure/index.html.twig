@@ -4,34 +4,78 @@
 
 {% block body %}
 
-<div class="flex items-center justify-center h-screen bg-gray-100">
+{% if app.user %}
+<div class="overflow-x-auto w-screen h-screen items-center justify-center flex">
+    <table class="w-[40rem] divide-y divide-gray-200">
+        <thead class="bg-gray-50">
+            <tr>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Nom</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Prix</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Longueur</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">Hauteur</th>
+            </tr>
+        </thead>
+        <tbody class="bg-white divide-y divide-gray-200">
+            <form action="{{ path('app_devis') }}" method="get">
+                {% for haie in mesHaies %}
+                <tr>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">{{ haie.nom }}</div>
+                        <input type="hidden" name="haie[{{ loop.index }}]" value="{{ haie.nom }}">
+                    </td>
+                    <td class="px-6 py-4 whitespace-nowrap">
+                        <div class="text-sm text-gray-900">{{ haie.prix }}</div>
+                    </td>
+                    <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <input type="number" name="longueurs[{{ loop.index }}]" value="0" class="border p-2 rounded-xl">
+                    </td>
+                    <td class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <input type="number" name="hauteurs[{{ loop.index }}]" value="0" class="border p-2 rounded-xl">
+                    </td>
+                </tr>
+                {% endfor %}
+                <tr>
+                    <td colspan="4" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                        <button type="submit" class="bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">Calculer le devis</button>
+                    </td>
+                </tr>
+            </form>
+        </tbody>
+    </table>
+</div>
+
+
+
+{% else %}
+
+<div class="flex items-center justify-center">
+<div class="flex items-center justify-center h-screen bg-gray-100 w-screen">
     <div class="p-6 max-w-lg bg-white rounded-lg shadow-md">
         <form method="GET" action="{{ path('app_devis') }}" class="space-y-4">
             <div class="text-center">
                 <h1 class="text-2xl font-semibold">Quel type de haie souhaitez-vous ?</h1>
             </div>
-
             <div>
-                <select name="haie" class="block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500">
+                <select name="haie[1]" class="block w-full p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500">
                     {% for haie in mesHaies %}
-                    <option value="{{ haie.getNom() ~ '|' ~ haie.getPrix() }}">{{ haie.getNom() }}</option>
+                        <option value="{{ haie.nom }}">{{ haie.nom }}</option>
                     {% endfor %}
                 </select>
             </div>
 
             <div class="flex flex-col gap-1">
                 <label for="longueur" class="text-sm font-medium text-gray-700">Longueur</label>
-                <input type="text" name="longueur" id="longueur" class="p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" required />
+                <input type="text" name="longueurs[1]" id="longueur" class="p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" required />
             </div>
 
             <div class="flex flex-col gap-1">
                 <label for="hauteur" class="text-sm font-medium text-gray-700">Hauteur</label>
-                <input type="text" name="hauteur" id="hauteur" class="p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" required />
+                <input type="text" name="hauteurs[1]" id="hauteur" class="p-2.5 text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-green-500 focus:border-green-500" required />
             </div>
-
             <input type="submit" value="Calculer le devis" class="w-full bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
         </form>
     </div>
 </div>
+{% endif %}
 
 {% endblock %}

@@ -11,6 +11,7 @@ use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Validator\Constraints\IsTrue;
 use Symfony\Component\Validator\Constraints\Length;
 use Symfony\Component\Validator\Constraints\NotBlank;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
 
 class RegistrationFormType extends AbstractType
 {
@@ -19,7 +20,13 @@ class RegistrationFormType extends AbstractType
         $builder
             ->add('ville')
             ->add('cp')
-            ->add('type_client')
+            ->add('type_client', ChoiceType::class, [
+                'choices'  => [
+                    'Entreprise' => 1,
+                    'Particulier' => 0,
+                ],
+            ])
+
             ->add('adresse')
             ->add('prenom')
             ->add('nom')

@@ -5,43 +5,54 @@
 {% block body %}
 
 <div class="flex flex-col items-center justify-center h-screen bg-gray-100">
-    <div class="p-4 w-96 bg-white rounded-lg shadow">
+    <div class="p-10 w-[50rem] bg-white rounded-lg shadow">
         <h2 class="text-2xl font-semibold text-center mb-6">Détails du Devis</h2>
         
         <div class="flex flex-col gap-3">
             <div class="flex items-center gap-2">
                 <p class="font-medium">Vous êtes un(e):</p>
-                <span class="text-gray-700">{{ devis.maVariable }}</span>
-            </div>
+                <span class="text-gray-700">{{ devis.nomination }}</span>
+            </div>  
+
+            <div class="flex  ">
+            {% for haie in devis.haies %}
+            <div class="flex flex-col w-screen">
 
             <div class="flex items-center gap-2">
-                <p class="font-medium">Votre haie:</p>
-                <span class="text-gray-700">{{ devis.haie }}</span>
+                <p class="font-medium">Nom haie:</p>
+                <span class="text-gray-700">{{ haie.haie }}</span>
             </div>
 
             <div class="flex items-center gap-2">
                 <p class="font-medium">Rappel Hauteur:</p>
-                <span class="text-gray-700">{{ devis.hauteur }}</span>
+                <span class="text-gray-700">{{ haie.hauteur }}</span>
             </div>
 
             <div class="flex items-center gap-2">
                 <p class="font-medium">Rappel Longueur:</p>
-                <span class="text-gray-700">{{ devis.longueur }}</span>
-            </div>
-
-            <div class="flex items-center gap-2">
-                <p class="font-medium">Prix:</p>
-                <span class="text-gray-700">{{ devis.prix }} euros</span>
+                <span class="text-gray-700">{{ haie.longueur }}</span>
             </div>
         </div>
+
+            {% endfor %}
+
+            
+        </div>
+        <div class="flex items-center gap-2">
+            <p class="font-medium">Prix:</p>
+            <span class="text-gray-700">{{ devis.prix }} euros</span>
+        </div>
+
         {% if app.user %}
 
         <form action="{{ path('app_devis_create') }}" method="post">
-            <input type="hidden" name="haie" value="{{devis.haie}}">
-            <input type="hidden" name="maVariable" value="{{devis.maVariable}}">
-            <input type="hidden" name="hauteur" value="{{devis.hauteur}}">
-            <input type="hidden" name="longueur" value="{{devis.longueur}}">
-            <input type="hidden" name="prix" value="{{devis.prix}}">
+            {% for haie in devis.haies %}
+                <input type="hidden" name="haie[{{ loop.index }}][nom]" value="{{ haie.haie }}">
+                <input type="hidden" name="haie[{{ loop.index }}][longueur]" value="{{ haie.longueur }}">
+                <input type="hidden" name="haie[{{ loop.index }}][hauteur]" value="{{ haie.hauteur }}">
+            {% endfor %}
+            <input type="hidden" name="prix" value="{{ devis.prix }}">
+            <input type="hidden" name="nomination" value="{{ devis.nomination }}">
 
             <button   class="h-10 w-full cursor-pointer hover:bg-green-600 duration-300 bg-green-500 text-white flex items-center justify-center rounded-xl ">Demander le devis</button>
 
