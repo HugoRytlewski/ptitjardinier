@@ -26,7 +26,6 @@ class RegistrationFormType extends AbstractType
                     'Particulier' => 0,
                 ],
             ])
-
             ->add('adresse')
             ->add('prenom')
             ->add('nom')

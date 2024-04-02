@@ -1,0 +1,67 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ModifierHaieController!{% endblock %}
+
+{% block body %}
+
+<div class="h-screen w-screen flex items-center justify-center bg-gray-100 p-4">
+    <div class="overflow-x-auto shadow-md sm:rounded-lg">
+        <table class="min-w-full text-sm text-left text-gray-500">
+            <thead class="text-xs text-gray-700 uppercase bg-gray-50 ">
+                <tr>
+                    <th scope="col" class="px-6 py-3">Mail</th>
+                    <th scope="col" class="px-6 py-3">Nom</th>
+                    <th scope="col" class="px-6 py-3">Prénom</th>
+                    <th scope="col" class="px-6 py-3">Adresse</th>
+                    <th scope="col" class="px-6 py-3">ville</th>
+                    <th scope="col" class="px-6 py-3">Code Postal</th>
+                    <th scope="col" class="px-6 py-3">Type Client</th>
+                    <th scope="col" class="px-6 py-3">Modification</th>
+                    <th scope="col" class="px-6 py-3">Suppression</th>
+
+
+                </tr>
+            </thead>
+            <tbody>
+                {% for user in ListUser %}
+                    <tr class="bg-white border-b">
+                        <td class="px-6 py-4">{{ user.email}}</td>
+                        <td class="px-6 py-4">{{ user.nom}}</td>
+                        <td class="px-6 py-4">{{ user.prenom}}</td>
+                        <td class="px-6 py-4">{{ user.ville}}</td>
+                        <td class="px-6 py-4">{{ user.adresse}}</td>
+                        <td class="px-6 py-4">{{ user.cp}}</td>
+                        <td class="px-6 py-4">
+                            {% if user.getTypeClient() == 0 %}
+                                Particulier
+                            {% else %}
+                                Professionnel
+                            {% endif %}
+                        </td>
+
+
+                        <td class="px-6 py-4">
+                            <a href="{{path('app_user_show',{'id':user.id})}}" class="font-medium text-green-400 hover:underline cursor-pointer">
+                                Consultation/Modification
+                            </a>   
+
+                        </td>
+                        <td class="px-6 py-4">
+
+                        <a href="{{path('app_user_delete',{'id':user.id})}}" class="font-medium text-green-400 hover:underline cursor-pointer">
+                            Supprimer
+                        </a>  
+                    </td>
+
+                    </tr>
+                {% else %}
+                    <tr class="bg-white">
+                        <td colspan="5" class="px-6 py-4 text-center text-gray-500">Aucune haie trouvée.</td>
+                    </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</div>
+
+{% endblock %}

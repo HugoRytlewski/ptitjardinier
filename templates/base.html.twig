@@ -34,16 +34,15 @@
 
                 <a onclick="openNav2() "href="#" class="text-white px-3 py-2 rounded-md hover:bg-green-600">Client</a>
                 <div id='sousmenu2' class="hidden absolute bg-green-700 py-2 rounded-md text-white  mt-10 z-20">
-                    <a href="{{path('app_ajouter_haie')}}" class="block px-4 py-2 hover:bg-green-600">Ajout client</a>
-                    <a href="{{path('app_modifier_list')}}" class="block px-4 py-2 hover:bg-green-600">Consultation/Modification</a>
+                    <a href="{{path('app_user')}}" class="block px-4 py-2 hover:bg-green-600">Ajout client</a>
+                    <a href="{{path('app_user')}}" class="block px-4 py-2 hover:bg-green-600">Consultation/Modification</a>
                 </div>
                 <a href="#" class="text-white px-3 py-2 rounded-md hover:bg-green-600">Contact</a>
             </div>
 
             {% if is_granted('ROLE_ADMIN') %}
             <a href="{{path('app_devis_list')}}" class="text-white px-3 py-2 rounded-md hover:bg-green-600">Devis</a>
-
-               
+  
             {% endif %}  
 
             </div>
