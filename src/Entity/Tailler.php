@@ -59,5 +59,27 @@ class Tailler
         $this->haie = $haie;
         return $this;
     }
+
+    public function getHauteur(): ?float
+    {
+        return $this->hauteur;
+    }
+
+    public function getLongueur(): ?float
+    {
+        return $this->longueur;
+    }
+
+    public function getDevis(): ?Devis
+    {
+        return $this->devis;
+    }
+
+    public function getHaie(): ?Haie
+    {
+        return $this->haie;
+    }
+
+    
 }
 

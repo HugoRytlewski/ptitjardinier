@@ -13,6 +13,7 @@
                     <th scope="col" class="px-6 py-3">Date</th>
                     <th scope="col" class="px-6 py-3">User</th>
                     <th scope="col" class="px-6 py-3">Actions</th>
+                    <th scope="col" class="px-6 py-3">Détails</th>
                 </tr>
             </thead>
             <tbody>
@@ -26,10 +27,15 @@
                                 Supprimer
                             </a>
                         </td>
+                        <td class="px-6 py-4">
+                            <a class="font-medium text-green-400 hover:underline" href="{{ path('app_devis_detail', { 'id': devis.no }) }}">
+                                Voir détails
+                            </a>
+                        </td>
                     </tr>
                 {% else %}
                     <tr class="bg-white">
-                        <td colspan="4" class="px-6 py-4 text-center text-gray-500">Aucun devis trouvé.</td>
+                        <td colspan="5" class="px-6 py-4 text-center text-gray-500">Aucun devis trouvé.</td>
                     </tr>
                 {% endfor %}
             </tbody>

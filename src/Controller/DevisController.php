@@ -138,4 +138,26 @@ class DevisController extends AbstractController
         return $this->redirectToRoute('app_devis_list');
     }
 
+    #[Route('/devis/detail/{id}', name: 'app_devis_detail')]
+    public function detail($id): Response
+    {
+        $devis = $this->getDoctrine()->getRepository(Devis::class)->find($id);
+        $tailler = $this->getDoctrine()->getRepository(Tailler::class)->findBy(['devis' => $devis->getNo()]);
+        $tabTailler = [];
+        foreach ($tailler as $taille) {
+            $tabTailler[] = [
+                'haie' => $taille->getHaie()->getNom(),
+                'longueur' => $taille->getLongueur(),
+                'hauteur' => $taille->getHauteur(),
+            ];
+        }
+
+        return $this->render('devis/detail.html.twig', [
+            'devis' => $devis,
+            'tailler' => $tabTailler,
+        ]);
+    }
+
+
+
 }
